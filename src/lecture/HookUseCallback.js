@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const HookUseCallback = () => {
   /* useCallback
@@ -57,6 +57,25 @@ const HookUseCallback = () => {
     console.log("textOnChangeHandler");
   }, [textOnChangeHandler]);
 
+  /* 복습 */
+
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const nameOnChangeHandler = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
+  const phoneOnChangeHandler = useCallback((e) => {
+    setPhone(e.target.value);
+  }, []);
+
+  const goAlert = useCallback(() => {
+    if (phone.length == 11) {
+      alert(`이름: ${name}\n 전화번호: ${phone}`);
+    } else {
+      alert("전화번호는 11자리로 입력해주세요.");
+    }
+  }, [name, phone]);
+
   return (
     <>
       <p>num1 : {number1}</p>
@@ -67,6 +86,21 @@ const HookUseCallback = () => {
       <br />
       <p>{text}</p>
       <input type="text" onChange={textOnChangeHandler} />
+
+      {/* 사용자에게 이름, 전화번호 입력받아 알림버튼 클릭시
+      이름 전화번호 같이 알림창 띄우기
+
+      단, 전화번호 길이는 11자리가 안 되면 다시 입력하라고 알림창 띄워주기*/}
+      <br />
+      <label>
+        이름
+        <input type="text" onChange={nameOnChangeHandler} />
+      </label>
+      <label>
+        전화번호
+        <input type="text" onChange={phoneOnChangeHandler} />
+      </label>
+      <button onClick={goAlert}>알림</button>
     </>
   );
 };
