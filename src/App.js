@@ -10,6 +10,7 @@ import HookUseRef_m from "./mission/HookUseRef";
 // import HookUseCallback from "./lecture/HookUseCallback";
 // import HookUseCallback_m from "./mission/HookUseCallback";
 import PropsSend from "./lecture/PropsSend";
+import PropsSend_m from "./mission/PropsSend";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       {/* <HookUseEffect /> */}
       {/* <HookUseRef /> */}
       {/* <HookUseCallback /> */}
-      <PropsSend />
+      {/* <PropsSend /> */}
 
       {/* 미션 컴포넌트 */}
       {/* <JsxRolues_m /> */}
@@ -28,6 +29,7 @@ function App() {
       {/* <HookUseEffect_m /> */}
       {/* <HookUseRef_m /> */}
       {/* <HookUseCallback_m /> */}
+      <PropsSend_m />
     </div>
   );
 }
