@@ -2,6 +2,14 @@ import { useState } from "react";
 import Login from "./Login";
 
 const PropsSend = () => {
+  /* 
+    부모에서 자식으로 값이 전달되어야 함
+    만약 자식에서 부모로 값을 전달할 경우에는 함수호출만 가능
+    (부모에서 함수를 던져줘야함)
+
+    단, 함수를 던질 때 절대로 set함수 던지지 않기
+    왜? 자식이 부모의 값을 직접적으로 건드리는 것은 좋지 않음.. 컴포넌트 독립성 유지
+  */
   const [open, setOpen] = useState(false);
   const openPopup = () => {
     setOpen(true);
@@ -20,8 +28,8 @@ const PropsSend = () => {
   };
 
   return open ? (
-    <Login onLogin={sucLogin} />
-  ) : loginName != "" ? (
+    <Login onLogin={sucLogin} type="구글" />
+  ) : loginName != "" ? ( //소스 안에 삼항연산자 써도 됨
     <div className="relative py-16 bg-gradient-to-br from-sky-50 to-gray-200">
       <div className="relative container m-auto px-6 text-gray-500 md:px-12 xl:px-40">
         <div className="m-auto md:w-8/12 lg:w-6/12 xl:w-6/12">

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 const Login = (props) => {
-  const { onLogin } = props;
+  const { onLogin, type } = props;
 
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -12,6 +12,8 @@ const Login = (props) => {
   const pwOnChangeHandler = useCallback((e) => {
     setPw(e.target.value);
   }, []);
+
+  // 부모에 있는 값을 자식이 직접적으로 변화하게 하면 안 됨(setter 함수 NO)
 
   const login = () => {
     const data = JSON.parse(localStorage.getItem("login"));
@@ -36,6 +38,8 @@ const Login = (props) => {
       close: true,
       name: data.name,
     });
+
+    // 하나의 값에 대한 것은 if-else if-else // 다른 값에 대한 거라면 if, if
   };
 
   const goClose = () => {
@@ -48,9 +52,7 @@ const Login = (props) => {
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
-              <h1 className="text-2xl font-semibold">
-                Login Form with Floating Labels
-              </h1>
+              <h1 className="text-2xl font-semibold">{type} 로그인</h1>
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
